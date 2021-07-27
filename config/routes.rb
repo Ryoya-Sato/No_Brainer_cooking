@@ -1,3 +1,12 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  root 'static_pages#top'
+  get 'user_sessions/new'
+  get 'user_sessions/create'
+  get 'user_sessions/destroy'
+  get    '/login',   to: 'user_sessions#new', as: :login
+  post   '/login',   to: 'user_sessions#create'
+  delete '/logout',    to: 'user_sessions#destroy', as: :logout
+  resources :users
+  resources :password_resets, only: %i[new create edit update]
+  mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
 end
