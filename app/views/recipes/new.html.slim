@@ -1,0 +1,30 @@
+= form_with model: @recipe, local: true do |f|
+  = render 'shared/error_messages', model: f.object
+  .form-group
+    = f.label :title
+    = f.text_field :title, class: 'form-control'
+  .form-group
+    = f.label :washing_time
+    = f.text_field :washing_time, class: 'form-control'
+  = f.fields_for :using_tools do |s|
+    = s.label :tool_id, '洗い物の種類'
+    = s.collection_select :tool_id, Tool.all, :id, :title, prompt: "選択してください", class: 'form-control'
+    = s.label :tools_count, '洗い物の数'
+    = s.number_field :tools_count
+  .form-group
+    = f.label :serving
+    = f.text_field :serving, class: 'form-control'
+  .form-group
+    = f.label :material
+    = f.text_area :material, size: "200x10", class: 'form-control'
+  .form-group
+    = f.label :cooking_method
+    = f.text_area :cooking_method, size: "200x10", class: 'form-control'
+  .form-group
+    = f.label :remarks
+    = f.text_area :remarks, size: "200x10", class: 'form-control'
+  .form-group
+    = f.label :cooking_image
+    = f.file_field :cooking_image, class: 'form-control mb-3', accept: 'image/*'
+    = f.hidden_field :cooking_image_cache
+  = f.submit class: 'btn btn-primary'
