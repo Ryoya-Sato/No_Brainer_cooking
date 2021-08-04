@@ -1,0 +1,6 @@
+.nested-fields
+  = f.label :tool_id, '洗い物の種類'
+  = f.collection_select :tool_id, Tool.all, :id, :name, {prompt: "選択してください"}, {class: 'select-box'}
+  = f.label :tools_count, '洗い物の数'
+  = f.number_field :tools_count
+  = link_to_remove_association '削除', f

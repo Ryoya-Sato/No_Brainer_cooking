@@ -1,12 +1,10 @@
-= form_with model: @user, url: password_reset_path(@token) do |f|
-  = f.label :email
+= simple_form_for @user, url: password_reset_path(@token) do |f|
+  = f.input :email, label: 'メールアドレス'
   br
   = @user.email
   br
-  = f.label :password, '新しいパスワード'
-  = f.password_field :password, class: 'form-control'
+  = f.input :password, label: '新しいパスワード'
   br
-  = f.label :password_confirmation, '新しいパスワード（確認用）'
-  = f.password_field :password_confirmation, class: 'form-control'
+  = f.input :password_confirmation, label: '新しいパスワード(確認用)'
   br
   = f.submit '更新', class: 'btn btn-primary'

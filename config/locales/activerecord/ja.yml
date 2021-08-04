@@ -1,0 +1,11 @@
+ja:
+  activerecord:
+  enums:
+    tool:
+      title:
+        knife: 包丁
+        cutting_board: まな板
+        frying_pan: フライパン
+        plate: お皿
+        tableware: 食器
+        other: その他

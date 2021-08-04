@@ -11,7 +11,7 @@ class RecipesController < ApplicationController
   def create
     @recipe = current_user.recipes.build(recipe_params)
     if @recipe.save
-      redirect_to recipes_path, success: 'レシピ投稿に成功しました'
+      redirect_to root_path, success: 'レシピ投稿に成功しました'
     else
       flash.now[:danger] = 'レシピ投稿に失敗しました'
       render :new
