@@ -3,15 +3,13 @@
     .col-md-10.offset-md-1.col-lg-8.offset-lg-2
       h1
         = 'ログインページ'
-      = form_with url: login_path, local: true do |f|
+      = simple_form_for login_path, local: true do |f|
         .form-group
-          = f.label :email, 'メールアドレス'
-          = f.text_field :email, class: "form-control"
+          = f.input :email, label: 'メールアドレス'
         .form-group
-          = f.label :password, 'パスワード'
-          = f.password_field :password, class:"form-control"
+          = f.input :password, label: 'パスワード'
         .actions
-          = f.submit 'ログイン', class: "btn btn-primary"
+          = f.button :submit, label: 'ログイン', class: "btn btn-primary"
       .text-center
         = check_box_tag :remember, params[:remember], true
         = label_tag :remember, '次回から自動的にログインする'
