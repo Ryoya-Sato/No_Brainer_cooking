@@ -1,0 +1,10 @@
+div
+  - @rakuten_recipes.each do |rakuten_recipe|
+    li
+      = rakuten_recipe.title
+    li
+      = image_tag rakuten_recipe.cooking_image, size: '100x100'
+    li
+      = link_to '詳しいレシピはこちら', rakuten_recipe.url
+    li
+      = link_to 'このレシピを選択する', edit_rakuten_recipe_path(rakuten_recipe.id)

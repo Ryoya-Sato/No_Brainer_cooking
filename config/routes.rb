@@ -9,5 +9,6 @@ Rails.application.routes.draw do
   resources :users
   resources :password_resets, only: %i[new create edit update]
   resources :recipes
+  resources :rakuten_recipes
   mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
 end

@@ -1,0 +1,28 @@
+= simple_form_for @recipe, local: true do |f|
+  = render 'shared/error_messages', model: f.object
+  .form-group
+    = f.input :title, label: '料理のタイトル', input_html: { value: @rakuten_recipe.title }
+  .form-group
+    = f.input :washing_time, label: '洗い物にかかる時間'
+    = f.fields_for :using_tools do |t|
+      = render 'using_tool_fields', f: t
+    .links
+      = link_to_add_association '洗い物の種類を追加', f, :using_tools, { class: 'js-add-log-field-btn' }
+  .form-group
+    = f.input :serving, label: '何人分'
+  .form-group
+    = f.input :material, label: '材料', input_html: { value: @rakuten_recipe.material }
+  .form-group
+    = f.input :cooking_method, label: '作り方', input_html: { value: "作り方・引用元：" + @rakuten_recipe.url }
+  .form-group
+    = f.input :remarks, label: '備考', input_html: { value: @rakuten_recipe.description }
+  .form-group
+    #img_field [onclick="$('#file-input').click()"]
+      - if @rakuten_recipe.cooking_image.present?
+        = image_tag @rakuten_recipe.cooking_image, size: '306x200'
+      - else
+        i.fas.fa-images
+    = f.input :cooking_image, label: false, input_html: { value: @rakuten_recipe.cooking_image, style: "display: none;", id: "file-input" }
+    = f.hidden_field :cooking_image, value: @rakuten_recipe.cooking_image
+    = f.hidden_field :cooking_image_cache
+  = f.submit class: 'btn btn-primary'

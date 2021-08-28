@@ -1,4 +1,4 @@
-$(function(){
+$(document).on('turbolinks:load', function() {
   $fileField = $('#file-input')
 
   $($fileField).on('change', $fileField, function(e) {
