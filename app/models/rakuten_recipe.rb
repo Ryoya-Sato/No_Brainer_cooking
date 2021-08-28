@@ -1,0 +1,3 @@
+class RakutenRecipe < ApplicationRecord
+
+end

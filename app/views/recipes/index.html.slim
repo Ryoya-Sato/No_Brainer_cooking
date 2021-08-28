@@ -1,0 +1,6 @@
+div
+  - @recipes.each do |recipe|
+    li
+      = recipe.title
+    li
+      = image_tag recipe.cooking_image.url, size: '100x100'
