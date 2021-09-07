@@ -1,0 +1,31 @@
+.container
+  .row.d-flex.align-items-center.pb-3
+    .col
+      = link_to "#{comment.user.name}さん", class: 'link pl-1'
+    .col.d-flex.justify-content-end
+      = comment.created_at.strftime('%Y/%m/%d')
+    .card-body.border.rounded.mb-3
+      = comment.comment
+    hr.d-none
+      - comment.replies.each do | reply |
+        .container.w-95.pt-3
+          .row.d-flex.align-items-center.pb-3
+            .col
+              = link_to "#{reply.user.name}さん", class: 'link pl-1'
+            .col.d-flex.justify-content-end
+              = reply.created_at.strftime('%Y/%m/%d')
+          .card-body.border.rounded.mb-3
+            = reply.comment
+            - unless comment.user == current_user
+              = link_to recipe_comment_path(comment.recipe_id, reply.id), method: :delete, remote: true do
+                .text-right
+                  button.btn.btn-outline-secondary
+                    | 削除する
+      - if comment.user != current_user
+        = render 'comments/reply_form', comment: comment, comment_reply: comment_reply
+      - if comment.user == current_user
+        = link_to recipe_comment_path(comment.recipe_id, comment.id), method: :delete, remote: true do
+          .text-right
+            button.btn.btn-outline-secondary
+              | 削除する
+    hr

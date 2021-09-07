@@ -20,6 +20,9 @@ class RecipesController < ApplicationController
 
   def show
     @recipe = Recipe.find(params[:id])
+    @comments = @recipe.comments.order(created_at: :desc)
+    @comment = Comment.new
+    @comment_reply = @recipe.comments.new
   end
 
   def edit; end

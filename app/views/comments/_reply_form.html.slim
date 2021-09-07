@@ -1,0 +1,6 @@
+= simple_form_for [recipe, comment_reply] local: false do |f|
+  .form-group
+    = f.input :comment, label: 'コメントに返信する', placeholder: "コメントに返信してみよう", input_html: { size: "3x3", autocomplete: 'off', class: 'form-control' }
+    = f.hidden_field :parent_id, input_html: { value: comment.id }
+  .text-right
+    = f.submit "返信する", class: 'btn btn-warning text-white'
