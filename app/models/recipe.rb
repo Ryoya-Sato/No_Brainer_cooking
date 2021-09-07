@@ -4,6 +4,7 @@ class Recipe < ApplicationRecord
   has_many :using_tools
   has_many :tools, through: :using_tools
   has_many :rakuten_recipes
+  has_many :comments, dependent: :destroy
   validates :title, presence: true, length: { maximum: 255 }
   validates :serving, numericality: true, null: false
   validates :washing_time, numericality: true, null: false

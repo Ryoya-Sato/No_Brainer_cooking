@@ -1,0 +1,30 @@
+div
+  = @recipe.title
+  br
+  = '洗い物時間 '
+  = @recipe.washing_time
+  = ' 分'
+  br
+  - @recipe.tools.each do |tool|
+    = tool.name
+    = UsingTool.search_by_recipe(@recipe).search_by_tool(tool).first.tools_count
+  br
+  = image_tag @recipe.cooking_image.url, size: '100x100'
+  br
+  br
+  = @recipe.serving
+  = '人分'
+  br
+  = '材料'
+  = simple_format @recipe.material
+  br
+  = '作り方'
+  = simple_format @recipe.cooking_method
+  br
+  = '備考'
+  = simple_format @recipe.remarks
+
+  #comments_area
+    = render 'comments/index', comments: @comments, comment_reply: @comment_reply
+  - if logged_in?
+    = render 'comments/form', recipe: @recipe, comment: @comment

@@ -4,3 +4,5 @@ div
       = recipe.title
     li
       = image_tag recipe.cooking_image.url, size: '100x100'
+    li
+      = link_to '詳細ページはこちら', recipe_path(recipe.id)

@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   authenticates_with_sorcery!
   has_many :recipes
+  has_many :comments, dependent: :destroy
 
   VALID_EMAIL_FORMAT = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i.freeze
   VALID_PASSWORD_FORMAT = /\A\w+\z/i.freeze

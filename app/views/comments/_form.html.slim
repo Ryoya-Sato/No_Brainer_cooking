@@ -1,0 +1,5 @@
+= simple_form_for [recipe, comment], remote: true do |f|
+  .form-group
+    = f.input :comment, label: 'コメントを投稿する', placeholder: "コメントを入力してください", input_html: { size: "3x3", autocomplete: 'off', class: 'form-control' }
+  .text-right
+    = f.submit "コメントする", class: 'btn btn-warning text-white'

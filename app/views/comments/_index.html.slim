@@ -1,0 +1,11 @@
+h5 コメント一覧（#{comments.count}件)
+hr
+- comments.where(parent_id: nil).first(3).each do |comment|
+  = render 'comments/hide_comments', comment: comment
+- comments.where(parent_id: nil).offset(3).any?
+  .text-right
+    button.btn.btn-primary[data-toggle="collapse" data-target="collapseExample" aria-expanded="false" aria-controls="collapseExample"]
+      | もっと見る....
+  .collapse#collapseExample
+    - comments.where(parent_id: nil).offset(3).each do |comment|
+      = render 'comments/hide_comments', comment: comment, comment_reply: comment_reply
