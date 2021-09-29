@@ -27,4 +27,5 @@ div
   #comments_area
     = render 'comments/index', comments: @comments, comment_reply: @comment_reply
   - if logged_in?
-    = render 'comments/form', recipe: @recipe, comment: @comment
+    = render 'comments/form', recipe: @recipe, comment: @comment, templatecomments: @templatecomments
+  - if logged_in?
