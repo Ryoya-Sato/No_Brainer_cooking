@@ -3,3 +3,8 @@
     = f.input :comment, label: 'コメントを投稿する', placeholder: "コメントを入力してください", input_html: { size: "3x3", autocomplete: 'off', class: 'form-control' }
   .text-right
     = f.submit "コメントする", class: 'btn btn-warning text-white'
+  .form-group
+    = collection_select :template_comment, :body, TemplateComment.all, :body, :body, { prompt: "簡易コメントを選択してください" }, { onchange: "auto_input()", class: 'form-control' }
+
+  script
+    |  var auto_input = function () { var element = document.getElementById("template_comment_body"); document.getElementById("comment_comment").value = element.value; }

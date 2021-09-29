@@ -1,0 +1,2 @@
+class TemplateComment < ApplicationRecord
+end

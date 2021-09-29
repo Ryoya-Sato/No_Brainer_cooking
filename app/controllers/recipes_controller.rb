@@ -23,6 +23,7 @@ class RecipesController < ApplicationController
     @comments = @recipe.comments.order(created_at: :desc)
     @comment = Comment.new
     @comment_reply = @recipe.comments.new
+    @templatecomments = TemplateComment.all
   end
 
   def edit; end
