@@ -1,8 +1,8 @@
 class Recipe < ApplicationRecord
   mount_uploader :cooking_image, ImageUploader
   belongs_to :user
-  has_many :using_tools
-  has_many :tools, through: :using_tools
+  has_many :using_tools, dependent: :destroy
+  has_many :tools, through: :using_tools, dependent: :destroy
   has_many :rakuten_recipes
   has_many :comments, dependent: :destroy
   validates :title, presence: true, length: { maximum: 255 }

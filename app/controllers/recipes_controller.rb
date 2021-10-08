@@ -1,4 +1,6 @@
 class RecipesController < ApplicationController
+  before_action :set_recipe, only: %i[edit update destroy]
+
   def index
     @recipes = Recipe.all
   end
@@ -29,19 +31,35 @@ class RecipesController < ApplicationController
   def edit; end
 
   def update
-
+    if @recipe.update(recipe_update_params)
+      redirect_to recipe_path(params[:id]), success: '編集に成功しました'
+    else
+      flash.now[:danger] = '編集に失敗しました'
+      render :edit
+    end
   end
 
   def destroy
-
+    @recipe.destroy!
+    redirect_to recipes_path, success: 'レシピを削除しました'
   end
 
   private
+
+  def set_recipe
+    @recipe = current_user.recipes.find(params[:id])
+  end
 
   def recipe_params
     params.require(:recipe).permit(:title, :serving, :washing_time, :material,
                                   :cooking_method, :remarks, :cooking_image,
                                   :cooking_image_cache, [using_tools_attributes: [:recipe_id, :tool_id, :tools_count]])
+  end
+
+  def recipe_update_params
+    params.require(:recipe).permit(:title, :serving, :washing_time, :material,
+                                  :cooking_method, :remarks, :cooking_image,
+                                  :cooking_image_cache, [using_tools_attributes: [:recipe_id, :tool_id, :tools_count, :id, :_destroy]])
   end
 
 end

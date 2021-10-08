@@ -24,6 +24,8 @@ div
   = '備考'
   = simple_format @recipe.remarks
 
+  = render 'crud_menus', recipe: @recipe if current_user.own?(@recipe)
+
   #comments_area
     = render 'comments/index', comments: @comments, comment_reply: @comment_reply
   - if logged_in?
