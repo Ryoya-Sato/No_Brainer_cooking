@@ -1,0 +1,7 @@
+ul.crud-menu-btn.list-inline.float-right
+  li.list-inline-item
+    = link_to edit_recipe_path(recipe), id: "button-edit-#{recipe.id}" do
+      = icon 'fa', 'pen'
+  li.list-inline-item
+    = link_to recipe_path(recipe), id: "button-delete-#{recipe.id}", method: :delete, data: {confirm: '本当に削除してもよろしいですか？'} do
+      = icon 'fas', 'trash'

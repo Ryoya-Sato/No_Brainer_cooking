@@ -13,4 +13,8 @@ class User < ApplicationRecord
   validates :email, presence: true, length: { maximum: 100 }, uniqueness: { case_sensitive: true }, format: { with: VALID_EMAIL_FORMAT }
   validates :name, presence: true, length: { maximum: 10 }, uniqueness: { case_sensitive: true }
   validates :reset_password_token, presence: true, uniqueness: true, allow_nil: true
+
+  def own?(object)
+    id == object.user_id
+  end
 end
